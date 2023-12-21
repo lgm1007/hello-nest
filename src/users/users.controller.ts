@@ -1,4 +1,12 @@
-import { Controller, Get, Param, Patch, Post, Put } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  HttpException,
+  Param,
+  Patch,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -8,6 +16,11 @@ export class UsersController {
   @Get()
   getAllUsers() {
     return 'get all users';
+  }
+
+  @Get('exception')
+  getException() {
+    throw new HttpException({ success: false, message: 'api is broken' }, 401);
   }
 
   @Get(':id')
