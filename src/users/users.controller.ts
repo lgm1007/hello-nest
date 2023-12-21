@@ -6,10 +6,13 @@ import {
   Patch,
   Post,
   Put,
+  UseFilters,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { HttpExceptionFilter } from '../http-exception.filter';
 
 @Controller('users')
+@UseFilters(HttpExceptionFilter)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
