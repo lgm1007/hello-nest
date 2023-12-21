@@ -10,8 +10,8 @@ import {
   UseFilters,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { HttpExceptionFilter } from '../http-exception.filter';
-import { PositiveIntPipe } from '../pipes/positive-int.pipe';
+import { HttpExceptionFilter } from '../common/exception/http-exception.filter';
+import { PositiveIntPipe } from '../common/pipes/positive-int.pipe';
 
 @Controller('users')
 @UseFilters(HttpExceptionFilter)
