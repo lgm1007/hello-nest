@@ -3,6 +3,7 @@ import {
   Get,
   HttpException,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Put,
@@ -27,7 +28,8 @@ export class UsersController {
   }
 
   @Get(':id')
-  getOneUser(@Param() param) {
+  getOneUser(@Param('id', ParseIntPipe) param: number) {
+    console.log(typeof param);
     return `get ${param} user`;
   }
 
