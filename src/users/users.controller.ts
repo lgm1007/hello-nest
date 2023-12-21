@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { HttpExceptionFilter } from '../http-exception.filter';
+import { PositiveIntPipe } from '../pipes/positive-int.pipe';
 
 @Controller('users')
 @UseFilters(HttpExceptionFilter)
@@ -28,7 +29,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  getOneUser(@Param('id', ParseIntPipe) param: number) {
+  getOneUser(@Param('id', ParseIntPipe, PositiveIntPipe) param: number) {
     console.log(typeof param);
     return `get ${param} user`;
   }
