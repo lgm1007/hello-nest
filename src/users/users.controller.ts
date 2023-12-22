@@ -7,13 +7,15 @@ import {
   Patch,
   Post,
   Put,
-  UseFilters,
-} from '@nestjs/common';
+  UseFilters, UseInterceptors
+} from "@nestjs/common";
 import { UsersService } from './users.service';
 import { HttpExceptionFilter } from '../common/exception/http-exception.filter';
 import { PositiveIntPipe } from '../common/pipes/positive-int.pipe';
+import { SuccessInterceptor } from "../common/interceptor/success.interceptor";
 
 @Controller('users')
+@UseInterceptors(SuccessInterceptor)
 @UseFilters(HttpExceptionFilter)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -30,7 +32,7 @@ export class UsersController {
 
   @Get(':id')
   getOneUser(@Param('id', ParseIntPipe, PositiveIntPipe) param: number) {
-    console.log(typeof param);
+    console.log(param);
     return `get ${param} user`;
   }
 
